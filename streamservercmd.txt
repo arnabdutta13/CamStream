@@ -1,0 +1,10 @@
+raspistill -w 640 -h 480 -q 5 -o ./stream/pic.jpg -tl 100 -t 9999999 -th 0:0:0 &
+sudo raspistill -w 640 -h 480 -q 5 -o ./stream/image_stream.jpg -tl 100 -t 9999999 -th 0:0:0 &
+sudo node testapp.js
+LD_LIBRARY_PATH=./ ./mjpg_streamer -i "input_file.so -f ./stream -n pic.jpg" -o "output_http.so -w ./www"
+
+sudo ffmpeg -s 640x480 -f video4linux2 -i /dev/video0 -f mpeg1video -b 800k -r 30 http://127.0.0.1:8082/raspberry/640/480/
+
+
+sudo modprobe bcm2835-v4l2
+ sudo ffmpeg -s 320x240 -f video4linux2 -i /dev/video0 -f mpeg1video -b 800k -r 30 http://127.0.0.1:8082/raspberry/320/240/
