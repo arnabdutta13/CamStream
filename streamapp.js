@@ -7,7 +7,7 @@ var url = require("url");
 
 var handler = function(request, response) {
 	var pathname = url.parse(request.url).pathname;
-	console.log("Request for " + pathname + " received.");
+	//console.log("Request for " + pathname + " received.");
 	console.log(pathname.substr(1));
 	if (pathname.substr(1) === '') {
 		fs.readFile(__dirname + "/stream-video.html", function(error, data) {
